@@ -77,6 +77,7 @@ function getMasterDtHeader($page){
     $data['expense'][] = ["name"=>"Location"];
     $data['expense'][] = ["name"=>"Demand Amount"];
     $data['expense'][] = ["name"=>"Approved Amount"];
+    $data['expense'][] = ["name"=>"Note"];
     $data['expense'][] = ["name"=>"Entry Date"];
     $data['expense'][] = ["name"=>"Reason"];
 
@@ -255,7 +256,7 @@ function getExpenseData($data){
     
     $action = getActionButton($downloadButton.$approveButton.$editButton.$deleteButton);
 
-    return [$action,$data->sr_no,$selectBox,formatDate($data->exp_date),$data->exp_number,$data->exp_by_name,$data->expense_label,$data->location,$data->demand_amount,$data->amount,formatDate($data->created_at),$data->rej_reason];   
+    return [$action,$data->sr_no,$selectBox,formatDate($data->exp_date),$data->exp_number,$data->exp_by_name,$data->expense_label,$data->location,$data->demand_amount,$data->amount,$data->notes,formatDate($data->created_at),$data->rej_reason];   
 }
 
 /* Meeting Table Data */

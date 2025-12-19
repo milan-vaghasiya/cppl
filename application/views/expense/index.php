@@ -69,9 +69,10 @@
 $(document).ready(function() {
 	
 	initBulkApproveButton();	
+	loadDataTable(); 
     $(document).on('click','.loaddata',function(){ 
 		loadDataTable(); 
-	}); 
+	});
 
 	$(document).on('click', '.BulkApproveRequest', function() {
 		if ($(this).attr('id') == "masterApproveSelect") {

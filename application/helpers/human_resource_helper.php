@@ -115,16 +115,21 @@ function getAttendanceData($data){
     //}
 
     $imgFile = '';
-    /*
-    if(!empty($data->img_file)):
-        $imgPath = base_url('assets/uploads/attendance_log/'.$data->img_file);
-        $imgFile='<div class="picture-item" >
-            <a href="'.$imgPath.'" class="lightbox" target="_blank">
-                <img src="'.$imgPath.'" alt="" class="img-fluid"  width="20" height="20" style="border-radius:0%;border: 0px solid #ccc;padding:3px;"/>
-            </a> 
-        </div>';
-    endif;
-    */
+    if (!empty($data->img_file) && !empty($data->punch_date)) {
+        $punchMonth   = date('Y-m', strtotime($data->punch_date));
+        $currentMonth = date('Y-m');
+        $lastMonth    = date('Y-m', strtotime('-1 month'));
+
+        if ($punchMonth == $currentMonth || $punchMonth == $lastMonth) {
+            $imgPath = base_url('assets/uploads/attendance_log/'.$data->img_file);
+            $imgFile='<div class="picture-item">
+                <a href="'.$imgPath.'" class="lightbox" target="_blank">
+                    <img src="'.$imgPath.'" alt="" class="img-fluid" width="20" height="20" style="border-radius:0%;border: 0px solid #ccc;padding:3px;"/>
+                </a> 
+            </div>';
+        }
+    }
+
 	$action = getActionButton($editButton.$deleteButton);
     return [$action,$data->sr_no,$data->emp_code,$data->emp_name,$data->type,date('d-m-Y H:i:s',strtotime($data->punch_date)),$data->meter,$data->loc_add,$imgFile];
 }
